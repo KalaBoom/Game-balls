@@ -38,7 +38,7 @@ function loop() {
             random(20,30),
             true
         )
-        balls.push(ball)
+        if (!ball.collisionDetect()) balls.push(ball)
     }
 
     for( let i = 0; i < balls.length; i++) {

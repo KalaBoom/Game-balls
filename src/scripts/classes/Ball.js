@@ -12,11 +12,24 @@ class Ball extends Shape {
         ctx.fill()
     }
     update() {
-        if ( ((this.x + this.size) >= width) || ((this.x - this.size) <= 0)) {
+
+        if ( (this.x + this.size) >= width) {
             this.velX = -(this.velX)
+            this.x = width - this.size*1.2
         }
-        if ( ((this.y + this.size) >= height) || ((this.y - this.size) <= 0)) {
+
+        else if ((this.x - this.size) <= 0) {
+            this.velX = -(this.velX)
+            this.x = this.size*1.2
+        }
+
+        if ((this.y + this.size) >= height) {
             this.velY = -(this.velY)
+            this.y = height - this.size*1.2
+        }
+        else if ((this.y - this.size) <= 0) {
+            this.velY = -(this.velY)
+            this.y = this.size*1.2
         }
 
         this.x += this.velX
@@ -32,6 +45,9 @@ class Ball extends Shape {
                 if (distance < this.size + balls[j].size) {
                     this.velX = -this.velX
                     this.velY = -this.velY
+                    balls[j].velX = -balls[j].velX
+                    balls[j].velY = -balls[j].velY
+                    return true
                 }
             }
         }
@@ -54,7 +70,7 @@ class Ball extends Shape {
     }
 }
 
-Ball.count = 10
+Ball.count = 20
 Ball.countBalls = function() {
     let count = balls.reduce((acc, ball) => {
         if (ball.exists) return acc += 1

@@ -27,6 +27,7 @@
     "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0-beta.2",
     "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
     "gulp-html-bem-validator": "^1.0.5",
     "gulp-imagemin": "^7.1.0",
     "gulp-plumber": "^1.2.1",

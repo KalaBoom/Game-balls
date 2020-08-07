@@ -6,8 +6,9 @@ const
     concat = require('gulp-concat')
 
 const scriptsArray = [
-    'src/scripts/classes/Shape.js',
-    'src/scripts/classes/Ball.js',
+    'src/scripts/components/Shape.js',
+    'src/scripts/components/Ball.js',
+    'src/scripts/components/Game.js',
     'src/scripts/script.js'
 ]
 

@@ -4,7 +4,6 @@ class Ball extends Shape {
         this.color = color
         this.size = size
     }
-    //static count = 20
     draw() {
         ctx.beginPath()
         ctx.fillStyle = this.color
@@ -52,29 +51,34 @@ class Ball extends Shape {
             }
         }
     }
-    mouseCollision() {
-        for (let i = 0; i < balls.length; i++) {
-            let distX = this.x - mouseX
-            let distY = this.y - mouseY
-            let distance = Math.sqrt(distX*distX + distY*distY)
-
-            if (distance < this.size) {
-                console.log(`DistX ${distX} DistY ${distY}`)
-                console.log(`MouseX ${mouseX} MouseY ${mouseY}`)
-                mouseX = undefined
-                mouseY = undefined
-                this.exists = false
-                showCount()
-            }
-        }
-    }
 }
 
-Ball.count = 20
+// Ball.count = 0
+// Ball.miss = 0
+
 Ball.countBalls = function() {
     let count = balls.reduce((acc, ball) => {
         if (ball.exists) return acc += 1
         else return acc += 0
     }, 0)
     return count
+}
+
+Ball.mouseCollision = function() {
+    let miss = true
+  
+    for (let i = 0; i < balls.length; i++) {
+        let distX = balls[i].x - mouseX
+        let distY = balls[i].y - mouseY
+        let distance = Math.sqrt(distX*distX + distY*distY)
+
+        if (distance < balls[i].size) {
+            mouseX = undefined
+            mouseY = undefined
+            balls[i].exists = false
+            miss = false
+        }
+    }
+
+    if (miss) ++Ball.miss
 }

@@ -1,65 +1,24 @@
-const canvas = document.querySelector('canvas')
-const ctx = canvas.getContext('2d')
+const btnStart = document.getElementById('btnStart')
+const btnRestart = document.getElementById('btnRestart')
 
-let width, height, mouseX, mouseY
-
-function random(min,max) {
-    return Math.floor(Math.random() * (max-min) + min)
+function startGame() {
+    Ball.count = 1
+    Ball.miss = 0
+    balls = []
+    canvas.classList.remove('no-display')
+    fullBalls()
+    loop()
+    showInfo()
 }
 
-function init() {
-    width = canvas.width = window.innerWidth
-    height = canvas.height = window.innerHeight
-}
-
-init()
-
-window.addEventListener('resize', init)
-canvas.addEventListener('mousedown', e => {
-    mouseX = e.clientX
-    mouseY = e.clientY
+btnStart.addEventListener('mousedown', e => {
+    const start = document.getElementById('start')
+    start.classList.add('no-display')
+    startGame()
 })
 
-let balls = []
-
-
-
-function loop() {
-    ctx.fillStyle = 'rgba(0,0,0,0.25)'
-    ctx.fillRect(0,0,width, height)
-
-    while (balls.length < Ball.count) {
-        let ball = new Ball(
-            random(0, width),
-            random(0, height),
-            random(-7,7),
-            random(-7,7),
-            'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) + ')', 
-            random(20,30),
-            true
-        )
-        if (!ball.collisionDetect()) balls.push(ball)
-    }
-
-    for( let i = 0; i < balls.length; i++) {
-        if (balls[i].exists) {
-            balls[i].draw()
-            balls[i].update()
-            balls[i].collisionDetect()
-            balls[i].mouseCollision()
-        }
-    }
-    
-    requestAnimationFrame(loop)
-}
-
-let paragraph = document.getElementsByTagName('p')
-let textParagraph = paragraph[0].textContent
-
-function showCount() {
-    paragraph[0].textContent = textParagraph + Ball.countBalls()
-}
-
-
-loop()
-showCount()
+btnRestart.addEventListener('mousedown', e => {
+    const end = document.getElementById('end')
+    end.classList.add('no-display')
+    startGame()
+})

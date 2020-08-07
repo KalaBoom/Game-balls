@@ -8,9 +8,29 @@
     <title>Jumping balls</title>
 </head>
 <body>
-    <h1>Game balls</h1>
-    <p>Ball count: </p>
-    <canvas></canvas>
+    <div class="modal" id="start">
+        <div class="modal__text">Game balls</div>
+        <button class="modal__btn-start" id="btnStart">Start</button>
+    </div>
+
+    <div class="modal no-display" id="end">
+        <div class="modal__text">
+            <span>You won</span> <br>
+            <span>count miss: </span> <span id="countMiss"></span>    
+        </div>
+        <button class="modal__btn-start" id="btnRestart">Restart</button>
+    </div>
+
+    <div class="game">
+        <div class="game__count">
+            <span>Balls count: </span> <span id="count"></span>
+        </div>
+        <div class="game__miss">
+            <span>Miss: </span> <span id="miss"></span>
+        </div>
+    </div>
+
+    <canvas class="no-display"></canvas>
     <script src="scripts/script.min.js" type="module"></script>
 </body>
 </html>

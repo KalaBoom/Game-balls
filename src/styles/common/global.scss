@@ -4,6 +4,10 @@
     box-sizing: inherit;
 }
 
+:root {
+    font-size: calc(1vw + 1em);
+}
+
 html {
     box-sizing: border-box;
 }
